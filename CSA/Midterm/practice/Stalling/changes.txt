@@ -1,0 +1,91 @@
+32c32
+<     bool        stallOver;
+---
+>     
+46c46
+<     bool        stallOver;
+---
+>     
+57c57
+< 
+---
+>     
+93c93
+< 			rfout.open("RFresult.txt", std::ios_base::app);
+---
+> 			rfout.open("RFresult_grading.txt", std::ios_base::app);
+193c193
+<             dmemout.open("dmemresult.txt");
+---
+>             dmemout.open("dmemresult_grading.txt");
+213c213
+<     printstate.open("stateresult.txt", std::ios_base::app);
+---
+>     printstate.open("stateresult_grading.txt", std::ios_base::app);
+466c466
+<         0,      //stallOver
+---
+>         
+480c480
+<         0,      //stallOver
+---
+>         
+491c491
+< 
+---
+>         
+504,511c504,511
+< 
+<     bitset<32> Instruction;
+<     bitset<32> Instr;    
+<     string opcode;
+<     string func; 
+<     bitset<5> Rs;
+<     bitset<5> Rt;
+<     bitset<5> Rd; 
+---
+>         
+> 	bitset<32> Instruction;
+> 	bitset<32> Instr;    
+> 	string opcode;
+> 	string func; 
+> 	bitset<5> Rs;
+> 	bitset<5> Rt;
+> 	bitset<5> Rd; 
+514,515d513
+<     bool isPrevSub = 0; // To check previous instr for dependency
+<     
+622d619
+<             
+635d631
+<         newState.MEM.stallOver = state.EX.stallOver;
+663,683d658
+<             // Check if it is still stalling or check if it is dependent subu instruction
+<             if ((newState.MEM.stallOver) || (opcode == "000000" && func == "100011" && isPrevSub && (newState.EX.Rs == state.EX.Wrt_reg_addr || newState.EX.Rt == state.EX.Wrt_reg_addr))) {
+<                 if (!(state.EX.stallOver || state.MEM.stallOver)) {
+<                     newState.EX.stallOver = 1;
+<                 } else {
+<                     newState.EX.stallOver = 0;
+<                 }
+<                 isPrevSub = 0;
+<                 newState.EX.nop = 1;
+<                 newState.ID = state.ID;
+<                 newState.IF = state.IF;
+< 
+<                 printState(newState, cycle);
+<                 state = newState;
+<                 cycle ++;
+<                 cout<<"Stall"<<endl;
+<                 continue;
+<             }
+< 
+<             isPrevSub = 0; // Clear after every loop
+<             
+698,699c673
+<                     newState.EX.INS = "subu";  
+<                     isPrevSub = 1;              // set to 1 for next cycle if it is a subu instruction
+---
+>                     newState.EX.INS = "subu";                    
+781,782d754
+< 
+< 
